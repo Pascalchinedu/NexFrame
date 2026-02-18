@@ -76,7 +76,7 @@ export function HowItWorks() {
             <motion.div key={idx} className="relative" variants={itemVariants}>
               {/* Connector Line (Desktop) */}
               {idx < steps.length - 1 && (
-                <div className="hidden lg:block absolute top-12 left-1/2 w-full h-1 bg-accent/20 transform translate-x-1/2" />
+                <div className="hidden lg:block absolute top-12 left-1/2 w-full h-1 bg-accent transform translate-x-1/2" />
               )}
 
               {/* Step Card */}

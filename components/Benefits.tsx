@@ -1,30 +1,56 @@
 'use client'
 
-import { Clock, BarChart3, Users, Lock } from 'lucide-react'
-import { Card } from '@/components/ui/card'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 
-const benefits = [
+const services = [
   {
-    icon: Clock,
-    title: 'Save 15–20 hours/week',
-    description: 'Eliminate manual data entry and repetitive tasks',
+    title: 'Automated Workflows',
+    description: 'Get your accounting processes running with little to no human input. We design and build automations that save your team hours every week.',
+    icons: [
+      { color: 'bg-orange-500', symbol: '⚡' },
+      { color: 'bg-purple-500', symbol: '◆' },
+    ],
   },
   {
-    icon: BarChart3,
-    title: 'Reduce errors by 90%',
-    description: 'Automated validation catches issues before they cost money',
+    title: 'Spreadsheet Automations',
+    description: 'Go beyond manual copy-pasting. We develop custom scripts that cut your spreadsheet work in half.',
+    icons: [
+      { color: 'bg-green-500', symbol: '✓' },
+      { color: 'bg-red-500', symbol: '📊' },
+    ],
   },
   {
-    icon: Users,
-    title: 'Scales with your team',
-    description: 'From single CPAs to large firms, grow without limits',
+    title: 'Custom Integrations',
+    description: 'Get your apps talking to each other. API, Webhooks, and RPA to connect tools you thought were impossible to integrate.',
+    icons: [
+      { color: 'bg-pink-500', symbol: '🔗' },
+      { color: 'bg-gray-500', symbol: '⚙' },
+    ],
   },
   {
-    icon: Lock,
-    title: 'Bank-grade security',
-    description: 'SOC 2 Type II, GDPR, ISO 27001 certified',
+    title: 'Data Design',
+    description: 'Build a single source of truth for your firm\'s data — structured to support automation, reporting, and AI-readiness.',
+    icons: [
+      { color: 'bg-yellow-500', symbol: '📈' },
+      { color: 'bg-blue-500', symbol: '◉' },
+    ],
+  },
+  {
+    title: 'Profitability Dashboards',
+    description: 'Bring your KPIs into real-time view so partners can make faster, more informed business decisions.',
+    icons: [
+      { color: 'bg-black', symbol: '■' },
+      { color: 'bg-yellow-400', symbol: '★' },
+    ],
+  },
+  {
+    title: 'AI Agents',
+    description: 'Move beyond rule-based automation. Integrate AI into your workflows to handle senior-level repetitive tasks automatically.',
+    icons: [
+      { color: 'bg-emerald-500', symbol: '🤖' },
+      { color: 'bg-rose-500', symbol: '✨' },
+    ],
   },
 ]
 
@@ -55,43 +81,47 @@ export function Benefits() {
   }
 
   return (
-    <section id="services" className="py-16 lg:py-24 bg-secondary">
+    <section id="services" className="py-16 lg:py-24 bg-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" ref={ref}>
         {/* Section Header */}
-        <div className="text-center mb-12 lg:mb-16">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary mb-4">
-            Why Choose Nexframe?
+        <div className="text-center mb-16 lg:mb-20">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black mb-4 text-balance">
+            Customized to your needs, specialized in your industry
           </h2>
-          <p className="text-lg text-foreground/60 max-w-2xl mx-auto">
-            Designed specifically for modern accounting teams who demand efficiency, accuracy, and security.
-          </p>
         </div>
 
-        {/* Benefits Grid */}
+        {/* Services Grid */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10"
           variants={containerVariants}
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
         >
-          {benefits.map((benefit, idx) => {
-            const Icon = benefit.icon
-            return (
-              <motion.div key={idx} variants={itemVariants}>
-                <Card className="flex flex-col items-center text-center p-8 bg-white border-0 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-default">
-                  <div className="mb-4 p-3 rounded-lg bg-accent/10 group-hover:bg-accent/20 transition-colors">
-                    <Icon className="h-8 w-8 text-accent" />
+          {services.map((service, idx) => (
+            <motion.div key={idx} variants={itemVariants} className="flex flex-col">
+              {/* Icon Pair */}
+              <div className="flex flex-col gap-3 mb-6">
+                {service.icons.map((icon, iconIdx) => (
+                  <div
+                    key={iconIdx}
+                    className={`h-12 w-12 rounded-lg ${icon.color} flex items-center justify-center text-white text-lg font-bold`}
+                  >
+                    {icon.symbol}
                   </div>
-                  <h3 className="text-lg font-semibold text-primary mb-2">
-                    {benefit.title}
-                  </h3>
-                  <p className="text-sm text-foreground/60">
-                    {benefit.description}
-                  </p>
-                </Card>
-              </motion.div>
-            )
-          })}
+                ))}
+              </div>
+
+              {/* Title */}
+              <h3 className="text-xl font-bold text-black mb-3">
+                {service.title}
+              </h3>
+
+              {/* Description */}
+              <p className="text-foreground/70 leading-relaxed">
+                {service.description}
+              </p>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>

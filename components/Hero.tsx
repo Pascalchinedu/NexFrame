@@ -29,117 +29,154 @@ export function Hero() {
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: [0.33, 0.66, 0.66, 1] },
-    },
-  }
-
-  const logoVariants = {
-    hidden: { opacity: 0, x: -20 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.6 },
+      transition: { duration: 0.6, ease: 'easeOut' },
     },
   }
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary via-primary to-primary/90 text-white pt-8">
-      {/* Background SVG Graphics */}
-      <div className="absolute inset-0 opacity-10">
-        <svg
-          viewBox="0 0 1200 600"
-          className="h-full w-full"
-          preserveAspectRatio="xMidYMid slice"
-        >
-          {/* Graph Lines */}
-          <g stroke="#00D4C8" strokeWidth="2" fill="none">
-            <path d="M 100 400 L 200 300 L 300 350 L 400 200 L 500 250 L 600 100" />
-            <path d="M 700 450 L 800 350 L 900 400 L 1000 250 L 1100 320" />
-          </g>
-
-          {/* Shield Icon */}
-          <g stroke="#00D4C8" strokeWidth="2" fill="none">
-            <path d="M 300 100 L 300 200 Q 300 300 200 350 Q 300 300 300 200 L 300 100" />
-            <path d="M 950 150 L 950 250 Q 950 350 850 400 Q 950 350 950 250 L 950 150" />
-          </g>
-
-          {/* Circles */}
-          <circle cx="150" cy="150" r="30" stroke="#00D4C8" strokeWidth="2" fill="none" />
-          <circle cx="1050" cy="500" r="40" stroke="#00D4C8" strokeWidth="2" fill="none" />
-        </svg>
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-white pt-8">
+      {/* Subtle Gradient Background Wash */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute inset-0 bg-gradient-to-br from-accent/20 via-transparent to-transparent" />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
-        <motion.div
-          className="space-y-6"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          {/* Main Headline */}
-          <motion.h1
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold text-balance leading-tight"
-            variants={itemVariants}
-          >
-            Transform Your Accounting Workflow
-          </motion.h1>
-
-          {/* Subheadline */}
-          <motion.p
-            className="text-lg sm:text-xl text-white/80 text-balance max-w-2xl mx-auto leading-relaxed"
-            variants={itemVariants}
-          >
-            Say goodbye to manual data entry—no developers needed. Automate your entire accounting process in minutes.
-          </motion.p>
-
-          {/* Trust Bar */}
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          {/* Left Column: Headline & CTA */}
           <motion.div
-            className="flex items-center justify-center gap-2 text-sm text-white/70"
-            variants={itemVariants}
+            className="space-y-8"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
           >
-            <div className="flex -space-x-2">
-              {[1, 2, 3].map((i) => (
-                <div
-                  key={i}
-                  className="h-8 w-8 rounded-full bg-accent/20 border-2 border-white/20"
-                />
-              ))}
+            {/* Main Headline with Teal Underline */}
+            <motion.div variants={itemVariants}>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black leading-tight text-balance">
+                Transform Your{' '}
+                <span className="relative inline-block">
+                  Accounting Workflow
+                  <span className="absolute bottom-0 left-0 w-full h-1 bg-accent" />
+                </span>
+              </h1>
+            </motion.div>
+
+            {/* Subheadline */}
+            <motion.p
+              className="text-lg sm:text-xl text-primary leading-relaxed max-w-xl"
+              variants={itemVariants}
+            >
+              Say goodbye to manual data entry — no developers needed
+            </motion.p>
+
+            {/* CTA Buttons */}
+            <motion.div
+              className="flex flex-col sm:flex-row gap-4 pt-4"
+              variants={itemVariants}
+            >
+              <Button
+                onClick={handleDemoClick}
+                size="lg"
+                className="bg-accent text-white hover:bg-accent/90 font-semibold text-base"
+              >
+                Book a Free Demo
+              </Button>
+              <Button
+                variant="outline"
+                size="lg"
+                onClick={handleVideoClick}
+                className="border-2 border-primary text-primary hover:bg-primary/5 font-semibold text-base"
+              >
+                <Play className="mr-2 h-4 w-4" />
+                Watch 2-min Demo
+              </Button>
+            </motion.div>
+          </motion.div>
+
+          {/* Right Column: Dark UI Mockup Card */}
+          <motion.div
+            className="relative hidden lg:block"
+            variants={itemVariants}
+            initial="hidden"
+            animate="visible"
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            {/* Floating Dark Card */}
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-[#1A1A2E] to-[#16213E] p-8 border border-accent/20">
+              {/* Card Background Accent */}
+              <div className="absolute top-0 right-0 w-40 h-40 bg-accent/10 rounded-full blur-3xl" />
+
+              {/* User Profile Section */}
+              <div className="relative z-10 flex items-center gap-4 mb-8">
+                <div className="h-12 w-12 rounded-full bg-gradient-to-br from-accent to-accent/60" />
+                <div>
+                  <p className="text-white font-semibold">Jordan Adams</p>
+                  <p className="text-white/60 text-sm">Controller</p>
+                </div>
+              </div>
+
+              {/* Main Stat with Teal Badge */}
+              <div className="relative z-10 mb-8">
+                <div className="inline-flex items-center gap-2 bg-accent/20 border border-accent/40 rounded-full px-4 py-2 mb-4">
+                  <span className="text-accent font-semibold text-sm">+15 hours</span>
+                  <span className="text-white/70 text-sm">saved this week</span>
+                </div>
+              </div>
+
+              {/* Benefits Grid */}
+              <div className="relative z-10 grid grid-cols-2 gap-4 mb-8">
+                <div>
+                  <p className="text-white/60 text-xs mb-1">Proposals Sent</p>
+                  <p className="text-white font-bold text-lg">7</p>
+                </div>
+                <div>
+                  <p className="text-white/60 text-xs mb-1">Documents</p>
+                  <p className="text-white font-bold text-lg">67</p>
+                </div>
+                <div>
+                  <p className="text-white/60 text-xs mb-1">Client Tasks</p>
+                  <p className="text-white font-bold text-lg">14</p>
+                </div>
+                <div>
+                  <p className="text-white/60 text-xs mb-1">Faster Onboarding</p>
+                  <p className="text-white font-bold text-lg">35%</p>
+                </div>
+              </div>
+
+              {/* Integration Icons */}
+              <div className="relative z-10 pt-6 border-t border-white/10">
+                <p className="text-white/60 text-xs mb-3">Top Apps Automated</p>
+                <div className="flex gap-3">
+                  {[
+                    { bg: 'bg-blue-500', icon: '∫' },
+                    { bg: 'bg-purple-500', icon: '≈' },
+                    { bg: 'bg-green-500', icon: '◉' },
+                    { bg: 'bg-orange-500', icon: '★' },
+                    { bg: 'bg-red-500', icon: '⚙' },
+                  ].map((item, idx) => (
+                    <div
+                      key={idx}
+                      className={`h-10 w-10 rounded-full ${item.bg} flex items-center justify-center text-white font-bold text-sm opacity-90`}
+                    >
+                      {item.icon}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Vertical Gradient Accent */}
+              <div className="absolute right-0 top-0 bottom-0 w-1 bg-gradient-to-b from-accent via-transparent to-transparent" />
             </div>
-            <span>Trusted by CPAs at firms like Jenkins & Associates</span>
-          </motion.div>
 
-          {/* CTA Buttons */}
-          <motion.div
-            className="flex flex-col sm:flex-row gap-4 justify-center pt-4"
-            variants={itemVariants}
-          >
-            <Button
-              onClick={handleDemoClick}
-              size="lg"
-              className="bg-accent text-accent-foreground hover:bg-accent/90 text-base font-semibold"
-            >
-              Book a Free Demo
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              onClick={handleVideoClick}
-              className="border-white/30 text-white hover:bg-white/10 text-base font-semibold"
-            >
-              <Play className="mr-2 h-4 w-4" />
-              Watch 2-min Demo
-            </Button>
+            {/* Floating Shadow Effect */}
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-accent/5 to-transparent blur-2xl" />
           </motion.div>
-        </motion.div>
+        </div>
       </div>
-
-      {/* Decorative Element Bottom */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent to-transparent" />
     </section>
   )
 }

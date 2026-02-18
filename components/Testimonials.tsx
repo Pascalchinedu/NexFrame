@@ -59,7 +59,7 @@ export function Testimonials() {
   }
 
   return (
-    <section id="testimonials" className="py-16 lg:py-24 bg-secondary">
+    <section id="testimonials" className="py-16 lg:py-24 bg-white">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-12 lg:mb-16">
@@ -74,7 +74,7 @@ export function Testimonials() {
         {/* Carousel */}
         <div className="relative">
           {/* Testimonial Card */}
-          <div className="bg-white border border-border rounded-lg p-8 md:p-12 shadow-sm">
+          <div className="bg-white border border-border rounded-lg p-8 md:p-12 shadow-sm transition-opacity duration-300">
             <div className="flex flex-col items-center text-center space-y-6">
               <Avatar className="h-16 w-16 bg-accent/10">
                 <AvatarFallback className="bg-accent/20 text-accent font-semibold">

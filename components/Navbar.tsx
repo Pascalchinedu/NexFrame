@@ -61,7 +61,8 @@ export function Navbar() {
           <div className="flex items-center gap-2">
             <Button
               onClick={handleDemoClick}
-              className="hidden md:inline-flex bg-accent text-accent-foreground hover:bg-accent/90"
+              className="hidden md:inline-flex border-2 border-primary text-primary hover:bg-primary/5"
+              variant="outline"
             >
               Book a Free Demo
             </Button>
