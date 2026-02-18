@@ -1,3 +1,5 @@
+'use client'
+
 import { Linkedin, Youtube, Twitter, Facebook } from 'lucide-react'
 
 const quickLinks = [
